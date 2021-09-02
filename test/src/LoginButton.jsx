@@ -21,7 +21,7 @@ const LoginButton = () => {
     <FacebookLogin
       textButton="Facebookでログインする"
       appId="4499411150110925"
-      autoLoad={true}
+      autoLoad={false}
       fields="name,email,picture"
       scope="instagram_basic,pages_show_list,public_profile"
       callback={responseFacebook}
