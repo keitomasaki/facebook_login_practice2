@@ -9,7 +9,7 @@ const LoginButton = () => {
         console.log("error");
         console.log(response.error);
       } else {
-        console.log("response2");
+        console.log("response");
         console.log(response);
       }
     } catch (error) {
@@ -23,7 +23,7 @@ const LoginButton = () => {
       appId="4499411150110925"
       autoLoad={false}
       fields="name,email,picture"
-      scope="instagram_basic,pages_show_list,public_profile,email"
+      scope="instagram_basic,pages_show_list,public_profile,"
       callback={responseFacebook}
       icon=" fa-facebook "
       returnScopes={true}
