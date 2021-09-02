@@ -23,7 +23,7 @@ const LoginButton = () => {
       appId="4499411150110925"
       autoLoad={false}
       fields="name,email,picture"
-      scope="instagram_basic,pages_show_list,public_profile"
+      scope="instagram_basic,pages_show_list,public_profile,email"
       callback={responseFacebook}
       icon=" fa-facebook "
       returnScopes={true}
