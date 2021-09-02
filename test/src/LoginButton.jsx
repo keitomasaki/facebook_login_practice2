@@ -3,6 +3,7 @@ import FacebookLogin from "react-facebook-login";
 
 const LoginButton = () => {
   const responseFacebook = (response) => {
+    console.log("response");
     console.log(response);
   };
   return (
