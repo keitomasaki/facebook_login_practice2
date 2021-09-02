@@ -5,8 +5,13 @@ import FacebookLogin from "react-facebook-login";
 const LoginButton = () => {
   const responseFacebook = (response) => {
     try {
-      console.log("response2");
-      console.log(response);
+      if (response.error) {
+        console.log("error");
+        console.log(response.error);
+      } else {
+        console.log("response2");
+        console.log(response);
+      }
     } catch (error) {
       console.error("error");
       console.error(error);
@@ -16,7 +21,7 @@ const LoginButton = () => {
     <FacebookLogin
       textButton="Facebookでログインする"
       appId="4499411150110925"
-      autoLoad={true}
+      autoLoad={false}
       fields="name,email,picture"
       scope="instagram_basic,pages_show_list,public_profile"
       callback={responseFacebook}
