@@ -7,7 +7,7 @@ const LoginButton = () => {
   };
   return (
     <FacebookLogin
-      appId="567363451132413"
+      appId="4499411150110925"
       autoLoad={true}
       fields="name,email,picture"
       scope="instagram_basic,pages_show_list"
