@@ -9,6 +9,10 @@ import {
 
 let instagramUserMediaDataList;
 
+const instagramGraphAPI = axios.create({
+  baseURL: "https://graph.facebook.com/v11.0",
+});
+
 const fetchInstagramBusinessAccount = (id) => {
   const url = `https://graph.facebook.com/v11.0/${id}?fields=instagram_business_account&access_token=${ACCESS_TOKEN}`;
   axios.get(`${url}`).then((result) => {
@@ -17,10 +21,16 @@ const fetchInstagramBusinessAccount = (id) => {
 };
 
 export const fetchInstagramUser = () => {
-  axios.get(`${url}`).then((result) => {
-    console.log(result);
-    fetchInstagramBusinessAccount(result.data.data[0].id);
-  });
+  // axios.get(`${url}`).then((result) => {
+  //   console.log(result);
+  //   fetchInstagramBusinessAccount(result.data.data[0].id);
+  // });
+  instagramGraphAPI
+    .get(`me/accounts?access_token=${ACCESS_TOKEN}`)
+    .then((result) => {
+      console.log(result);
+      fetchInstagramBusinessAccount(result.data.data[0].id);
+    });
 };
 export const testInstagramUserName = () => {
   axios.get(`${instagramUserNameUrl}`).then((result) => {
