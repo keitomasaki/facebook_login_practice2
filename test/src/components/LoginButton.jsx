@@ -13,6 +13,11 @@ const LoginButton = (props) => {
         console.log("response");
         console.log(response);
         fetchUserData(response);
+        if (response.grantedScopes.indexOf("instagram_basic") !== -1) {
+          console.log("success");
+        } else {
+          console.log("failed");
+        }
       }
     } catch (error) {
       console.error("error");
