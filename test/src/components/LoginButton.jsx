@@ -2,7 +2,8 @@ import React from "react";
 import FacebookLogin from "react-facebook-login";
 // import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
-const LoginButton = () => {
+const LoginButton = (props) => {
+  const { fetchUserData } = props;
   const responseFacebook = (response) => {
     try {
       if (response.error) {
@@ -11,6 +12,7 @@ const LoginButton = () => {
       } else {
         console.log("response");
         console.log(response);
+        fetchUserData(response);
       }
     } catch (error) {
       console.error("error");

@@ -3,14 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import LoginButton from "./LoginButton";
-import TestAxios from "./components/TestAxios";
+import Wrapper from "./Wrapper";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    <LoginButton />
-    <TestAxios />
+    <Wrapper />
   </React.StrictMode>,
   document.getElementById("root")
 );
