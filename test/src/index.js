@@ -4,11 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import LoginButton from "./LoginButton";
+import TestAxios from "./components/TestAxios";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
     <LoginButton />
+    <TestAxios />
   </React.StrictMode>,
   document.getElementById("root")
 );

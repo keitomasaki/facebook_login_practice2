@@ -82,6 +82,7 @@ function App() {
       <button onClick={facebookLogin}>Facebookでログイン</button>
       <button onClick={facebookLogout}>log out</button>
       <button onClick={checkLoginUser}>ユーザを確認</button>
+      <hr />
     </div>
   );
 }
