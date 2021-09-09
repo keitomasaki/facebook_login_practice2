@@ -9,35 +9,44 @@ import {
 
 let instagramUserMediaDataList;
 
-const instagramGraphAPI = axios.create({
+const INSTAGRAM_GRAPH_API = axios.create({
   baseURL: "https://graph.facebook.com/v11.0",
 });
 
-const fetchInstagramBusinessAccount = (id) => {
-  const url = `https://graph.facebook.com/v11.0/${id}?fields=instagram_business_account&access_token=${ACCESS_TOKEN}`;
-  axios.get(`${url}`).then((result) => {
-    console.log(result.data.instagram_business_account.id);
+export const fetchInstagramBusinessAccount = (facebookPageId, accessToken) => {
+  return new Promise(async (resolve) => {
+    const url = `${facebookPageId}?fields=instagram_business_account&access_token=${accessToken}`;
+    let ig_user_id;
+    await INSTAGRAM_GRAPH_API.get(`/${url}`).then((result) => {
+      console.log(result.data.instagram_business_account.id);
+      ig_user_id = result.data.instagram_business_account.id;
+    });
+    resolve(ig_user_id);
   });
 };
 
 export const fetchInstagramUser = () => {
-  // axios.get(`${url}`).then((result) => {
-  //   console.log(result);
-  //   fetchInstagramBusinessAccount(result.data.data[0].id);
-  // });
-  instagramGraphAPI
-    .get(`me/accounts?access_token=${ACCESS_TOKEN}`)
-    .then((result) => {
+  INSTAGRAM_GRAPH_API.get(`me/accounts?access_token=${ACCESS_TOKEN}`).then(
+    async (result) => {
+      const facebookPageId = result.data.data[0].id;
       console.log(result);
-      fetchInstagramBusinessAccount(result.data.data[0].id);
-    });
-};
-export const testInstagramUserName = () => {
-  axios.get(`${instagramUserNameUrl}`).then((result) => {
-    console.log(result);
-  });
+      const ig_user_id = await fetchInstagramBusinessAccount(
+        facebookPageId,
+        ACCESS_TOKEN
+      );
+      console.log("11111111", ig_user_id);
+      const ig_user_name = fetchInstagramUserName(ig_user_id);
+    }
+  );
 };
 
+export const fetchInstagramUserName = async (ig_user_id) => {
+  console.log("22222222222", ig_user_id);
+  const url = `${ig_user_id}?fields=username&access_token=${ACCESS_TOKEN}`;
+  await INSTAGRAM_GRAPH_API.get(`/${url}`).then((result) => {
+    console.log(result.data.username);
+  });
+};
 export const fetchInstagramUserMedia = () => {
   axios.get(`${instagramUserMediaUrl}`).then((result) => {
     console.log(result.data.data.map((item) => item.id));
@@ -52,8 +61,22 @@ export const fetchInstagramUserPhoto = () => {
     const url = instagramUserPhotoUrl(item.id);
     console.log(url);
     axios.get(`${url}`).then((result) => {
-      console.log(result);
+      console.log(result.data);
     });
+  });
+};
+
+export const fetchFacebookPageId = () => {
+  console.log("---");
+  return new Promise(async (resolve) => {
+    let facebookPageId;
+    await INSTAGRAM_GRAPH_API.get(
+      `me/accounts?access_token=${ACCESS_TOKEN}`
+    ).then((result) => {
+      console.log("fetchFacebookAccount", result);
+      facebookPageId = result.data.data[0].id;
+    });
+    resolve(facebookPageId);
   });
 };
 

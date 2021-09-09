@@ -29,7 +29,7 @@ const LoginButton = (props) => {
       textButton="Facebookでログインする"
       appId="567363451132413"
       autoLoad={false}
-      fields="name,email,picture"
+      fields="name,email,picture,thumbnail_url"
       scope="instagram_basic,pages_show_list,public_profile,"
       callback={responseFacebook}
       icon=" fa-facebook "
